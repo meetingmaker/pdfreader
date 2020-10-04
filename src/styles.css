@@ -1,0 +1,34 @@
+/* add css styles here (optional) */
+
+.test {
+  display: inline-block;
+  margin: 2em auto;
+  border: 2px solid #000;
+  font-size: 2em;
+}
+
+.popupContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background-color: #222222B3;
+}
+
+.popupContent {
+  display: flex;
+  flex: 1;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.popupiframe {
+  background-color: #22222280;
+  background-image: url(https://raw.githubusercontent.com/nclong87/nclong87.github.io/master/spinner3.gif);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
