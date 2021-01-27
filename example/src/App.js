@@ -27,8 +27,8 @@ export default class App extends PureComponent {
     }
     console.log('constructor')
     this.viewer = {
-      host: 'http://localhost',
-      path: '/pdf/web/viewer.html',
+      host: 'https://nclong87.github.io',
+      path: '/web/viewer.html',
     };
     this.pdfRef = React.createRef();
     this.handleGoToPage = this.handleGoToPage.bind(this);

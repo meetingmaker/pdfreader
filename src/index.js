@@ -102,6 +102,7 @@ class PDF extends PureComponent {
         case 'documentloaded': {
           const { pagesCount } = event.data.data
           this.totalPages = pagesCount
+          this.props.onLoaded()
           break
         }
         case 'pagechanging': {
@@ -167,6 +168,7 @@ PDF.propTypes = {
     PropTypes.string,
     PropTypes.instanceOf(Object)
   ]).isRequired,
+  onLoaded: PropTypes.func,
   onPageChanged: PropTypes.func,
   onLastPage: PropTypes.func,
   onRequestClose: PropTypes.func
@@ -179,6 +181,7 @@ PDF.defaultProps = {
   },
   popup: false,
   downloadable: false,
+  onLoaded: () => null,
   onPageChanged: () => null,
   onRequestClose: () => null,
   onLastPage: () => null
