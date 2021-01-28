@@ -23,16 +23,16 @@ export default class App extends PureComponent {
     this.state = {
       open: true,
       downloadable: false,
-      isPresentationMode: false,
     }
     console.log('constructor')
     this.viewer = {
       host: 'https://nclong87.github.io',
       path: '/web/viewer.html',
+      // host: 'http://localhost',
+      // path: '/pdf/web/viewer.html',
     };
     this.pdfRef = React.createRef();
     this.handleGoToPage = this.handleGoToPage.bind(this);
-    this.handleRequestPresentationMode = this.handleRequestPresentationMode.bind(this);
   }
 
   // componentDidMount() {
@@ -49,9 +49,8 @@ export default class App extends PureComponent {
     this.pdfRef.current.goToPage(page);
   }
 
-  handleRequestPresentationMode() {
-    const isPresentationMode = !this.state.isPresentationMode;
-    this.setState({ isPresentationMode }, () => this.pdfRef.current.requestPresentationMode({ isPresentationMode }))
+  handleStartPresentation(isPresenter) {
+    this.pdfRef.current.startPresentation({ isPresenter })
   }
 
   render () {
@@ -65,15 +64,15 @@ export default class App extends PureComponent {
         <div className="test-controls">
           <GoToPage goToPage={this.handleGoToPage} />
           <fieldset>
-            <legend>Request presentation mode</legend>
-            <button onClick={this.handleRequestPresentationMode}>Request</button>
+            <legend>Start presentation</legend>
+            <button onClick={() => this.handleStartPresentation(true)}>As Presenter</button>
+            <button onClick={() => this.handleStartPresentation(false)}>As Viewer</button>
           </fieldset>
         </div>
         <PDF
           ref={this.pdfRef}
           src="https://file-examples-com.github.io/uploads/2017/10/file-example_PDF_500_kB.pdf"
           downloadable={this.state.downloadable}
-          onRequestClose={() => this.setState({ open: false })}
           onLastPage={() => console.log('onLastPage')}
           onPageChanged={(currentPage) => console.log('currentPage', currentPage)}
           viewer={this.viewer}

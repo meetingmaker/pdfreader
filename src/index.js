@@ -10,16 +10,17 @@ class PDF extends PureComponent {
     }
     this.totalPages = 0
     this.handleOnReceived = this.handleOnReceived.bind(this)
+    this.handleDispatchKeydownToIframe = this.handleDispatchKeydownToIframe.bind(this)
     this.handlePressEscape = this.handlePressEscape.bind(this)
     this.handleClickOnPopupContainer = this.handleClickOnPopupContainer.bind(this)
     this.goToPage = this.goToPage.bind(this)
-    this.requestPresentationMode = this.requestPresentationMode.bind(this)
+    this.startPresentation = this.startPresentation.bind(this)
     this.sendDocumentState = this.sendDocumentState.bind(this)
   }
 
   componentDidMount() {
     window.addEventListener('message', this.handleOnReceived)
-    document.addEventListener('keydown', this.handlePressEscape, false)
+    document.addEventListener('keydown', this.handleDispatchKeydownToIframe, false)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -38,7 +39,7 @@ class PDF extends PureComponent {
 
   componentWillUnmount() {
     window.removeEventListener('message', this.handleOnReceived, false)
-    document.removeEventListener('keydown', this.handlePressEscape, false)
+    document.removeEventListener('keydown', this.handleDispatchKeydownToIframe, false)
   }
 
   goToPage(page) {
@@ -47,14 +48,23 @@ class PDF extends PureComponent {
     this.iframe.contentWindow.postMessage({ message: 'onPageChanged', data: page }, host)
   }
 
-  requestPresentationMode(data) {
+  startPresentation(data) {
     const host = this.props.viewer.host
-    this.iframe.contentWindow.postMessage({ message: 'onPresentationModeRequested', data }, host)
+    this.iframe.contentWindow.postMessage({ message: 'onPresentationStarted', data }, host)
   }
 
   sendDocumentState(data) {
     const host = this.props.viewer.host
     this.iframe.contentWindow.postMessage({ message: 'onStateChanged', data }, host)
+  }
+
+  handleDispatchKeydownToIframe(event) {
+    const host = this.props.viewer.host
+    const { key, keyCode } = event
+    this.iframe.contentWindow.postMessage({ message: 'onKeydown', data: { key, keyCode } }, host)
+    // this.iframe.contentWindow.dispatchEvent(
+    //   new KeyboardEvent('keydown', { key: event.key }), host
+    // )
   }
 
   handlePressEscape(e) {
