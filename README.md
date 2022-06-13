@@ -2,7 +2,7 @@
 
 > PDF Reader component using PDF.js library
 
-[![NPM](https://img.shields.io/npm/v/ngager-pdfreader.svg)](https://www.npmjs.com/package/ngager-pdfreader) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@meetingmaker/pdfreader)](https://www.npmjs.com/package/@meetingmaker/pdfreader) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
