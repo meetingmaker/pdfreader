@@ -1,10 +1,10 @@
 {
   "name": "@meetingmaker/pdfreader",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "PDF Reader component using PDF.js library",
   "author": "ngager-group",
   "license": "MIT",
-  "repository": "ngager-group/ngager-pdfreader",
+  "repository": "meetingmaker/pdfreader",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
