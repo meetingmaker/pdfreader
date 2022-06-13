@@ -28,9 +28,10 @@ class PDF extends PureComponent {
     if (prevState.currentPage !== currentPage) {
       this.props.onPageChanged(currentPage)
     }
-    if (prevProps.downloadable !== this.props.downloadable) {
+    if (prevProps.downloadable !== this.props.downloadable || prevProps.preview !== this.props.preview) {
       const resource = {
-        downloadable: this.props.downloadable
+        downloadable: this.props.downloadable,
+        preview: this.props.preview,
       }
       const host = this.props.viewer.host
       this.iframe.contentWindow.postMessage({ message: 'onResourceChanged', data: resource }, host)
@@ -101,7 +102,8 @@ class PDF extends PureComponent {
           const resource = {
             src: this.props.src,
             popup: this.props.popup,
-            downloadable: this.props.downloadable
+            downloadable: this.props.downloadable,
+            preview: this.props.preview,
           }
           this.iframe.contentWindow.postMessage({ message: 'onResourceChanged', data: resource }, host)
           break
@@ -174,6 +176,7 @@ PDF.propTypes = {
   viewer: PropTypes.instanceOf(Object),
   popup: PropTypes.bool,
   downloadable: PropTypes.bool,
+  preview: PropTypes.bool,
   src: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.instanceOf(Object)
@@ -191,6 +194,7 @@ PDF.defaultProps = {
   },
   popup: false,
   downloadable: false,
+  preview: false,
   onLoaded: () => null,
   onPageChanged: () => null,
   onRequestClose: () => null,
