@@ -1,6 +1,6 @@
 {
-  "name": "@meetingmaker/pdfreader",
-  "version": "1.0.6",
+  "name": "@spce/pdfreader",
+  "version": "1.1.0",
   "description": "PDF Reader component using PDF.js library",
   "author": "ngager-group",
   "license": "MIT",
