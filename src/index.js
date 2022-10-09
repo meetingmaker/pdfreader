@@ -12,6 +12,9 @@ class PDF extends PureComponent {
     this.handleOnReceived = this.handleOnReceived.bind(this)
     this.handlePressEscape = this.handlePressEscape.bind(this)
     this.handleClickOnPopupContainer = this.handleClickOnPopupContainer.bind(this)
+    this.goToPage = this.goToPage.bind(this)
+    this.requestPresentationMode = this.requestPresentationMode.bind(this)
+    this.sendDocumentState = this.sendDocumentState.bind(this)
   }
 
   componentDidMount() {
@@ -29,13 +32,29 @@ class PDF extends PureComponent {
         downloadable: this.props.downloadable
       }
       const host = this.props.viewer.host
-      this.iframe.contentWindow.postMessage(resource, host)
+      this.iframe.contentWindow.postMessage({ message: 'onResourceChanged', data: resource }, host)
     }
   }
 
   componentWillUnmount() {
     window.removeEventListener('message', this.handleOnReceived, false)
     document.removeEventListener('keydown', this.handlePressEscape, false)
+  }
+
+  goToPage(page) {
+    // console.log('goToPage1', page)
+    const host = this.props.viewer.host
+    this.iframe.contentWindow.postMessage({ message: 'onPageChanged', data: page }, host)
+  }
+
+  requestPresentationMode(data) {
+    const host = this.props.viewer.host
+    this.iframe.contentWindow.postMessage({ message: 'onPresentationModeRequested', data }, host)
+  }
+
+  sendDocumentState(data) {
+    const host = this.props.viewer.host
+    this.iframe.contentWindow.postMessage({ message: 'onStateChanged', data }, host)
   }
 
   handlePressEscape(e) {
@@ -74,7 +93,7 @@ class PDF extends PureComponent {
             popup: this.props.popup,
             downloadable: this.props.downloadable
           }
-          this.iframe.contentWindow.postMessage(resource, host)
+          this.iframe.contentWindow.postMessage({ message: 'onResourceChanged', data: resource }, host)
           break
         }
         case 'close':

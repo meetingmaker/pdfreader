@@ -8,11 +8,36 @@ body {
   display: flex;
   flex: 1;
   height: 100%;
-  background-image: url(./image.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
 .root {
   display: flex;
   flex: 1;
+}
+
+.pdf-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pdf-container > iframe {
+  display: flex;
+  height: unset;
+  flex: 1;
+  border-bottom: 1px solid #bbb;
+}
+
+.test-controls {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  max-height: 100px;
 }
