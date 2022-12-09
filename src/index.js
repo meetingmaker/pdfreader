@@ -218,6 +218,7 @@ PDF.propTypes = {
   onPageChanged: PropTypes.func,
   onLastPage: PropTypes.func,
   onRequestClose: PropTypes.func,
+  preventEvents: PropTypes.bool,
 };
 
 PDF.defaultProps = {
