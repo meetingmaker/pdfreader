@@ -150,7 +150,7 @@ class PDF extends PureComponent {
         case "documentloaded": {
           const { pagesCount } = event.data.data;
           this.totalPages = pagesCount;
-          this.props.onLoaded();
+          this.props.onLoaded(this.totalPages);
           break;
         }
         case "pagechanging": {
@@ -163,6 +163,11 @@ class PDF extends PureComponent {
           if (this.totalPages > 0 && pageNumber === this.totalPages) {
             this.props.onLastPage();
           }
+          this.props.onPageRendered(pageNumber);
+          break;
+        }
+        case "documentDownloaded": {
+          this.props.onDocumentDownloaded();
           break;
         }
         default:
@@ -219,6 +224,8 @@ PDF.propTypes = {
   onLastPage: PropTypes.func,
   onRequestClose: PropTypes.func,
   preventEvents: PropTypes.bool,
+  onPageRendered: PropTypes.func,
+  onDocumentDownloaded: PropTypes.func,
 };
 
 PDF.defaultProps = {
@@ -234,6 +241,8 @@ PDF.defaultProps = {
   onPageChanged: () => null,
   onRequestClose: () => null,
   onLastPage: () => null,
+  onPageRendered: () => null,
+  onDocumentDownloaded: () => null,
 };
 
 export default PDF;
