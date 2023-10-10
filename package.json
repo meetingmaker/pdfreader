@@ -1,10 +1,10 @@
 {
   "name": "@meetingmaker/pdfreader",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "PDF Reader component using PDF.js library",
   "author": "ngager-group",
   "license": "MIT",
-  "repository": "ngager-group/ngager-pdfreader",
+  "repository": "meetingmaker/pdfreader",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
@@ -23,8 +23,8 @@
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
-    "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
+    "react": "^15.0.0 || ^16.0.0 || ^17.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0 || ^17.0.0"
   },
   "devDependencies": {
     "@svgr/rollup": "^2.4.1",
