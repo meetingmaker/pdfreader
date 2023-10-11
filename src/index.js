@@ -104,6 +104,7 @@ class PDF extends PureComponent {
             popup: this.props.popup,
             downloadable: this.props.downloadable,
             preview: this.props.preview,
+            spaceId: this.props.spaceId
           }
           this.iframe.contentWindow.postMessage({ message: 'onResourceChanged', data: resource }, host)
           break
@@ -181,6 +182,7 @@ PDF.propTypes = {
     PropTypes.string,
     PropTypes.instanceOf(Object)
   ]).isRequired,
+  spaceId: PropTypes.string,
   onLoaded: PropTypes.func,
   onPageChanged: PropTypes.func,
   onLastPage: PropTypes.func,
